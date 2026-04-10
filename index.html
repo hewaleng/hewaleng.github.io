@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hewaleng的软萌小窝 🐱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "思源柔黑体", "站酷快乐体", sans-serif;
+        }
+        body {
+            background-color: #FFF9FB;
+            color: #5A3E36;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(255, 182, 193, 0.25);
+        }
+        h1 {
+            color: #FFB6C1;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #8A6E66;
+            margin-bottom: 40px;
+        }
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-indent: 2em;
+        }
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 20px;
+            padding: 12px 32px;
+            background-color: #FFB6C1;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #FF9EB1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+        }
+        .cat-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://picsum.photos/id/40/50/50" alt="猫咪" class="cat-cursor" id="catCursor">
+
+    <div class="container">
+        <h1>🐱 Hewaleng的软萌小窝 🐱</h1>
+        <p class="subtitle">记录生活 | 学习笔记 | 可爱日常 ✨</p>
+        
+        <div class="content">
+            <p>哈喽大家好！这里是Hewaleng的个人博客~</p>
+            <p>以后会在这里分享我的学习笔记、生活日常，还有各种可爱的小发现，欢迎常来玩呀🥰</p>
+        </div>
+
+        <a href="#" class="btn">查看我的博客文章</a>
+    </div>
+
+    <script>
+        const cat = document.getElementById('catCursor');
+        document.addEventListener('mousemove', (e) => {
+            cat.style.left = e.clientX + 10 + 'px';
+            cat.style.top = e.clientY + 10 + 'px';
+        });
+    </script>
+</body>
+</html>

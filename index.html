@@ -1,3 +1,344 @@
+<!-- 小猫幻想乡 - 双端全能终极版（电脑+安卓+仓库+三花猫粒子） -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; background: rgba(255,252,245,0.97); display: none; flex-direction: column; align-items: center; justify-content: center; font-family: Arial, sans-serif;" id="gameContainer">
+  <h2 style="color: #FFB74D; font-family: 'Ma Shan Zheng', cursive; font-size: 26px; margin: 10px 0;">🐱 小猫幻想乡 🐱</h2>
+
+  <!-- 主菜单 -->
+  <div id="mainMenu" style="width: 90%; max-width: 400px; text-align: center; margin-bottom:10px; display:none;">
+    <button onclick="showLevelSelect()" style="width:100%; padding:12px; border-radius:12px; border:none; background:#FFEAA7; font-weight:bold; margin:5px 0; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">开始游戏</button>
+    <button onclick="showInventory()" style="width:100%; padding:12px; border-radius:12px; border:none; background:#D1F8EF; font-weight:bold; margin:5px 0; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">小猫仓库</button>
+  </div>
+
+  <!-- 关卡选择 -->
+  <div id="levelSelect" style="width: 90%; max-width: 400px; text-align: center; margin-bottom:10px; display:none;">
+    <p style="font-size:16px; color:#5A4A3F; margin:6px 0;">选择关卡</p>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap:6px; margin-top:8px;">
+      <button onclick="startGame(1)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">1</button>
+      <button onclick="startGame(2)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">2</button>
+      <button onclick="startGame(3)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">3</button>
+      <button onclick="startGame(4)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">4</button>
+      <button onclick="startGame(5)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">5</button>
+      <button onclick="startGame(6)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">6</button>
+      <button onclick="startGame(7)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">7</button>
+      <button onclick="startGame(8)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">8</button>
+      <button onclick="startGame(9)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">9</button>
+      <button onclick="startGame(10)" style="aspect-ratio:1; border-radius:10px; border:none; background:#FFEAA7; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.9)'" onmouseup="this.style.transform='scale(1)'">10</button>
+    </div>
+    <button onclick="showMainMenu()" style="margin-top:10px; padding:8px 16px; border-radius:10px; border:none; background:#FFB74D; color:white; font-weight:bold; cursor:pointer;">返回</button>
+  </div>
+
+  <!-- 小猫仓库 -->
+  <div id="inventory" style="width:90%; max-width:400px; height:70vh; background:#FFF8E0; border-radius:16px; border:3px solid #FFB74D; display:none; flex-direction:column; align-items:center; padding:10px; overflow-y:auto;">
+    <h3 style="color:#FFB74D; margin:8px 0;">🐾 小猫仓库</h3>
+    <div id="catCollection" style="display:grid; grid-template-columns: repeat(3,1fr); gap:8px; width:100%;"></div>
+    <button onclick="showMainMenu()" style="margin-top:10px; padding:8px 16px; border-radius:10px; border:none; background:#FFB74D; color:white; font-weight:bold; cursor:pointer;">返回</button>
+  </div>
+
+  <!-- 游戏区域 -->
+  <div id="gameArea" style="width:90%; max-width:400px; height:70vh; background:#D1F8EF; position:relative; overflow:hidden; border-radius:16px; border:3px solid #FFEAA7; display:none;">
+    <div id="player" style="width:45px; height:45px; background:url('https://picsum.photos/id/40/50/50'); background-size:cover; position:absolute; bottom:40px; left:45%; transition:0.05s;"></div>
+    <div id="gameUI" style="position:absolute; top:8px; left:10px; font-size:14px; font-weight:bold; color:#5A4A3F; z-index:999;">
+      关卡：<span id="level">1</span>｜生命：<span id="hp">3</span>｜得分：<span id="score">0</span>
+    </div>
+  </div>
+
+  <!-- 触屏控制 -->
+  <div id="touchControls" style="width:90%; max-width:400px; display:none; justify-content:space-between; margin-top:10px;">
+    <button id="leftBtn" style="width:48%; height:50px; border:none; border-radius:14px; background:#FFEAA7; font-size:18px; font-weight:bold; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">◀️ 左</button>
+    <button id="rightBtn" style="width:48%; height:50px; border:none; border-radius:14px; background:#FFEAA7; font-size:18px; font-weight:bold; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">右 ▶️</button>
+  </div>
+
+  <!-- 奖励界面 -->
+  <div id="rewardScreen" style="width:90%; max-width:400px; height:70vh; background:#FFF8E0; border-radius:16px; border:3px solid #FFB74D; display:none; flex-direction:column; align-items:center; justify-content:center; color:#5A4A3F; text-align:center;">
+    <h2 style="color:#FFB74D; font-size:24px;">🎉 关卡胜利！</h2>
+    <p style="font-size:16px;">获得新小猫</p>
+    <img id="rewardCatImg" style="width:110px; height:110px; border-radius:50%; border:4px solid #FFEAA7; margin:10px 0;">
+    <p style="font-size:18px; font-weight:bold;">名称：<span id="rewardCatName" style="color:#FF6B6F;"></span></p>
+    <button onclick="continueToNext()" style="padding:10px 24px; background:#FFB74D; border:none; border-radius:14px; color:white; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">继续冒险</button>
+  </div>
+
+  <button onclick="closeTouhouGame()" style="margin-top:10px; padding:8px 20px; background:#FFB74D; border:none; border-radius:14px; color:white; font-weight:bold; cursor:pointer; transition:0.2s;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">关闭游戏</button>
+</div>
+
+<!-- 游戏入口 -->
+<button onclick="startTouhouGame()" style="position: fixed; top:10px; right:10px; background:#D1F8EF; border:2px solid #FFEAA7; padding:10px 16px; border-radius:20px; color:#5A4A3F; font-weight:bold; cursor:pointer; z-index:10; font-size:14px;">🎮 小猫幻想乡</button>
+
+<script>
+// 双端游戏核心
+let gameRunning = false;
+let playerLeft = 45;
+const speed = 8;
+let score = 0;
+let level = 1;
+let hp = 3;
+let hasGun = false;
+
+let gameLoop;
+let bullets = [];
+let items = [];
+let shots = [];
+
+// 10只小猫图鉴
+const catRewards = [
+  { name:"初心小猫", img:"https://picsum.photos/id/40/120/120" },
+  { name:"勇敢小猫", img:"https://picsum.photos/id/237/120/120" },
+  { name:"三花小猫", img:"https://picsum.photos/id/64/120/120" },
+  { name:"治愈小猫", img:"https://picsum.photos/id/1025/120/120" },
+  { name:"星光小猫", img:"https://picsum.photos/id/1062/120/120" },
+  { name:"彩虹小猫", img:"https://picsum.photos/id/1074/120/120" },
+  { name:"忍者小猫", img:"https://picsum.photos/id/169/120/120" },
+  { name:"天使小猫", img:"https://picsum.photos/id/200/120/120" },
+  { name:"神龙小猫", img:"https://picsum.photos/id/306/120/120" },
+  { name:"幻想小猫", img:"https://picsum.photos/id/433/120/120" }
+];
+
+let unlockedCats = JSON.parse(localStorage.getItem('unlockedCats')) || [];
+
+const player = document.getElementById('player');
+const gameArea = document.getElementById('gameArea');
+const touchControls = document.getElementById('touchControls');
+const levelSelect = document.getElementById('levelSelect');
+const rewardScreen = document.getElementById('rewardScreen');
+const mainMenu = document.getElementById('mainMenu');
+const inventory = document.getElementById('inventory');
+
+// 双端控制
+let leftBtn = document.getElementById('leftBtn');
+let rightBtn = document.getElementById('rightBtn');
+let touchingLeft = false;
+let touchingRight = false;
+let keys = { ArrowLeft: false, ArrowRight: false };
+
+// 触屏
+leftBtn.addEventListener('touchstart',(e)=>{e.preventDefault(); touchingLeft=true});
+leftBtn.addEventListener('touchend',(e)=>{e.preventDefault(); touchingLeft=false});
+rightBtn.addEventListener('touchstart',(e)=>{e.preventDefault(); touchingRight=true});
+rightBtn.addEventListener('touchend',(e)=>{e.preventDefault(); touchingRight=false});
+
+// 电脑按键
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='ArrowLeft') keys.ArrowLeft=true;
+  if(e.key==='ArrowRight') keys.ArrowRight=true;
+});
+document.addEventListener('keyup',(e)=>{
+  if(e.key==='ArrowLeft') keys.ArrowLeft=false;
+  if(e.key==='ArrowRight') keys.ArrowRight=false;
+});
+
+const levelData = [
+  { speed:6, rate:0.06 },{ speed:7, rate:0.08 },{ speed:8, rate:0.10 },
+  { speed:9, rate:0.12 },{ speed:10, rate:0.14 },{ speed:11, rate:0.16 },
+  { speed:12, rate:0.18 },{ speed:13, rate:0.20 },{ speed:14, rate:0.22 },
+  { speed:15, rate:0.25 }
+];
+
+// ========== 界面切换 ==========
+function startTouhouGame(){
+  gameContainer.style.display='flex';
+  showMainMenu();
+}
+function showMainMenu(){
+  mainMenu.style.display='block';
+  levelSelect.style.display='none';
+  inventory.style.display='none';
+  gameArea.style.display='none';
+  touchControls.style.display='none';
+  rewardScreen.style.display='none';
+}
+function showLevelSelect(){
+  mainMenu.style.display='none';
+  levelSelect.style.display='block';
+}
+function showInventory(){
+  renderInventory();
+  mainMenu.style.display='none';
+  inventory.style.display='flex';
+}
+
+// ========== 渲染仓库 ==========
+function renderInventory(){
+  const box = document.getElementById('catCollection');
+  box.innerHTML = '';
+  catRewards.forEach((cat,i)=>{
+    let div = document.createElement('div');
+    div.style.cssText = 'display:flex; flex-direction:column; align-items:center; background:white; padding:6px; border-radius:8px;';
+    let img = document.createElement('img');
+    img.src = cat.img;
+    img.style.width='50px';
+    img.style.height='50px';
+    img.style.borderRadius='50%';
+    let name = document.createElement('span');
+    name.style.fontSize='12px';
+    name.innerText = unlockedCats.includes(i+1) ? cat.name : '???';
+    div.appendChild(img);
+    div.appendChild(name);
+    box.appendChild(div);
+  });
+}
+
+// ========== 开始游戏 ==========
+function startGame(lv){
+  level=lv; playerLeft=45; score=0; hp=3; hasGun=false;
+  bullets=[]; items=[]; shots=[]; gameRunning=true;
+  levelSelect.style.display='none';
+  gameArea.style.display='block';
+  touchControls.style.display='flex';
+  updateUI();
+  gameLoop=setInterval(gameUpdate,20);
+}
+
+// ========== 游戏循环 ==========
+function gameUpdate(){
+  if(!gameRunning) return;
+
+  // 双端移动
+  if((touchingLeft || keys.ArrowLeft) && playerLeft>0) playerLeft-=speed;
+  if((touchingRight || keys.ArrowRight) && playerLeft<90) playerLeft+=speed;
+  player.style.left = playerLeft+'%';
+
+  if(hasGun && Math.random()<0.15) shoot();
+
+  let cfg=levelData[level-1];
+  if(Math.random()<cfg.rate) createBullet(cfg.speed);
+  if(Math.random()<0.012) createItem();
+
+  // 弹幕
+  for(let i=bullets.length-1; i>=0; i--){
+    let b=bullets[i]; b.top+=b.speed; b.el.style.top=b.top+'px';
+    if(b.top>gameArea.clientHeight-80 &&
+       b.left>playerLeft*gameArea.clientWidth/100-30 &&
+       b.left<playerLeft*gameArea.clientWidth/100+30) { hitBullet(i); break; }
+    if(b.top>gameArea.clientHeight) {
+      b.el.remove(); bullets.splice(i,1); score++; updateUI();
+      if(score>=level*40) levelComplete();
+    }
+  }
+
+  // 射击
+  for(let i=shots.length-1; i>=0; i--){
+    let s=shots[i]; s.top-=7; s.el.style.top=s.top+'px';
+    for(let j=bullets.length-1; j>=0; j--){
+      let b=bullets[j];
+      if(Math.abs(s.left-b.left)<20 && Math.abs(s.top-b.top)<20){
+        createHitEffect(b.left,b.top);
+        b.el.remove(); s.el.remove(); bullets.splice(j,1); shots.splice(i,1); score+=5; updateUI(); break;
+      }
+    }
+    if(s.top<0) { s.el.remove(); shots.splice(i,1); }
+  }
+
+  // 道具（三花猫掉落）
+  for(let i=items.length-1; i>=0; i--){
+    let it=items[i]; it.top+=4.5; it.el.style.top=it.top+'px';
+    let cx=playerLeft*gameArea.clientWidth/100+22;
+    if(it.top>gameArea.clientHeight-70 && Math.abs(it.left-cx)<38){
+      getItem(it.type); it.el.remove(); items.splice(i,1);
+    }
+    if(it.top>gameArea.clientHeight) { it.el.remove(); items.splice(i,1); }
+  }
+}
+
+// ========== 射击 ==========
+function shoot(){
+  let x=playerLeft*gameArea.clientWidth/100+20;
+  let s=document.createElement('div');
+  s.style.cssText='width:6px; height:14px; background:#64B5F6; border-radius:3px; position:absolute; top:'+(gameArea.clientHeight-60)+'px; left:'+x+'px;';
+  gameArea.appendChild(s);
+  shots.push({el:s, top:gameArea.clientHeight-60, left:x});
+}
+
+// ========== 弹幕 ==========
+function createBullet(sp){
+  let l=Math.random()*(gameArea.clientWidth-14);
+  let b=document.createElement('div');
+  b.style.cssText=`width:14px; height:14px; background:#FF9EB1; border-radius:50%; position:absolute; top:0; left:${l}px;`;
+  gameArea.appendChild(b);
+  bullets.push({el:b, top:0, left:l, speed:sp});
+}
+
+// ========== 三花猫掉落道具 ==========
+function createItem(){
+  let ty=['hp','star','gun'][Math.floor(Math.random()*3)];
+  let l=Math.random()*(gameArea.clientWidth-22);
+  let it=document.createElement('div');
+  // 三花猫图标
+  it.style.background = 'url(https://picsum.photos/id/64/40/40)';
+  it.style.backgroundSize = 'cover';
+  it.style.cssText += 'width:26px; height:26px; border-radius:50%; position:absolute; top:0; left:'+l+'px; box-shadow:0 0 8px #FFEAA7;';
+  gameArea.appendChild(it);
+  items.push({el:it, top:0, left:l, type:ty});
+}
+
+// ========== 打击特效 ==========
+function createHitEffect(x,y){
+  let ef=document.createElement('div');
+  ef.style.cssText='width:20px; height:20px; background:#FF6B6F; border-radius:50%; position:absolute; top:'+y+'px; left:'+x+'px; animation:boom 0.3s forwards;';
+  gameArea.appendChild(ef);
+  setTimeout(()=>ef.remove(),300);
+}
+
+// ========== 吃到道具 ==========
+function getItem(t){
+  if(t==='hp'){ hp=Math.min(3,hp+1); alert('❤️ 生命恢复'); }
+  if(t==='star'){ score+=15; alert('⭐ 得分+15'); }
+  if(t==='gun'){ hasGun=true; alert('🔫 获得武器'); }
+  updateUI();
+}
+
+// ========== 被击中 ==========
+function hitBullet(i){
+  bullets[i].el.remove(); bullets.splice(i,1);
+  hp--; updateUI();
+  player.style.filter='brightness(1.6)';
+  setTimeout(()=>player.style.filter='',300);
+  if(hp<=0){ alert('💥 游戏结束'); closeTouhouGame(); }
+}
+
+// ========== 关卡完成 ==========
+function levelComplete(){
+  gameRunning=false; clearInterval(gameLoop);
+  gameArea.style.display='none'; touchControls.style.display='none';
+  rewardScreen.style.display='flex';
+  let cat=catRewards[level-1];
+  document.getElementById('rewardCatImg').src=cat.img;
+  document.getElementById('rewardCatName').innerText=cat.name;
+  if(!unlockedCats.includes(level)){
+    unlockedCats.push(level);
+    localStorage.setItem('unlockedCats',JSON.stringify(unlockedCats));
+  }
+}
+
+// ========== 继续游戏 ==========
+function continueToNext(){
+  if(level<10) startGame(level+1);
+  else startGame(10);
+}
+
+// ========== 关闭游戏 ==========
+function closeTouhouGame(){
+  clearInterval(gameLoop); gameRunning=false;
+  gameContainer.style.display='none';
+  bullets.forEach(b=>b.el.remove());
+  items.forEach(it=>it.el.remove());
+  shots.forEach(s=>s.el.remove());
+}
+
+// ========== UI更新 ==========
+function updateUI(){
+  document.getElementById('level').innerText=level;
+  document.getElementById('hp').innerText=hp;
+  document.getElementById('score').innerText=score;
+}
+</script>
+<style>
+@keyframes boom {
+  to { transform:scale(1.5); opacity:0; }
+}
+</style>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -159,7 +500,7 @@
         <a href="index.html">首页</a>
         <a href="blog.html">博客文章</a>
         <a href="about.html">关于我</a>
-        <a href=" https://v.douyin.com/zTaKo7f_fME/ 8@8.com :7pm" class="btn" style="background:#FF99CC;color:white;" target="_blank">
+        <a href="https://v.douyin.com/zTaKo7f_fME/ 8@8.com :7pm" class="btn" style="background:#FF99CC;color:white;" target="_blank">
 🎀 我的抖音
 </a>
     </div>

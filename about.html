@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 | Hewaleng的软萌小窝 🐱</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #FFEAA7;
+            --secondary: #D1F8EF;
+            --bg: #FFFDF5;
+            --text: #5A4A3F;
+            --shadow: rgba(255, 234, 167, 0.3);
+        }
+        body {
+            background-color: var(--bg);
+            background-image: url('https://picsum.photos/id/106/1920/1080');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 30px 20px;
+            font-family: "Noto Sans SC", sans-serif;
+        }
+        .navbar {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            background: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .navbar a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        .navbar a:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.9);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px var(--shadow);
+            backdrop-filter: blur(8px);
+        }
+        h1 {
+            color: #FFB74D;
+            font-family: "Ma Shan Zheng", cursive;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 5px solid var(--primary);
+        }
+        .about-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-indent: 2em;
+            margin-bottom: 20px;
+        }
+        .floating-cat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 9998;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://picsum.photos/id/237/80/80" alt="猫咪" class="floating-cat">
+
+    <div class="navbar">
+        <a href="index.html">首页</a>
+        <a href="blog.html">博客文章</a>
+        <a href="about.html">关于我</a>
+    </div>
+
+    <div class="container">
+        <h1>💖 关于我</h1>
+        <img src="https://picsum.photos/id/64/150/150" alt="头像" class="avatar">
+        <div class="about-content">
+            <p>哈喽大家好！我是Hewaleng，一名生物科学专业的大一学生~</p>
+            <p>平时喜欢学习生物信息学、编程，也喜欢记录生活中的可爱瞬间，这个博客就是我的专属小窝，用来分享学习笔记、生活日常和各种可爱的小发现✨</p>
+            <p>如果你也喜欢这些内容，欢迎常来玩呀🥰</p>
+        </div>
+    </div>
+</body>
+</html>
